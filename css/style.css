@@ -1,0 +1,97 @@
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000;
+}
+
+.play-btn-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.play-btn-wrapper--active {
+    background-color: gold;
+    transform: rotate(360deg);
+}
+
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 25px solid #000;
+    border-right: none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    transform: translate(calc(-50% + 4px), -50%);
+    transition-duration: 300ms;
+    opacity: 1;
+}
+
+.play-btn-wrapper--active .play-btn {
+    opacity: 0;
+}
+
+.stop-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    transform: translate(-50%, -50%);
+    transition-duration: 300ms;
+    opacity: 0;
+}
+
+.stop-btn .line {
+    width: 10px;
+    height: 35px;
+    background-color: #000;
+}
+
+.stop-btn .line:nth-child(2) {
+    margin-left: 5px;
+}
+
+.play-btn-wrapper--active .stop-btn {
+    opacity: 1;
+}
+
+audio {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-radius: 100px;
+}
+
+@keyframes pulsar {
+    0% {
+        box-shadow: 0 0 0 0px gold;
+    }
+    50% {
+        box-shadow: 0 0 0 5px gold;
+    }
+    100% {
+        box-shadow: 0 0 0 0px gold;
+    }
+}
+
+.play-btn-wrapper--active + audio {
+    background-color: gold;
+    animation-name: pulsar;
+    animation-duration: 400ms;
+    animation-iteration-count: infinite;
+}
